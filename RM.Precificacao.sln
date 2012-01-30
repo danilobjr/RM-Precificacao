@@ -1,0 +1,109 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RM.Precificacao.Dominio", "Dominio\RM.Precificacao.Dominio.csproj", "{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RM.Precificacao.Dominio.Tests", "Dominio.Tests\RM.Precificacao.Dominio.Tests.csproj", "{D329CAA7-F23C-447E-955E-3CE7A089B1CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F379EA1-0CD0-4746-98DC-EE783D446D9A}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		TestabilityEF4.vsmdi = TestabilityEF4.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RM.Precificacao.Infra", "Infra\RM.Precificacao.Infra.csproj", "{3A863BED-2EE2-4AA4-B129-E4180E5EB3B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RM.Precificacao.Web", "Web\RM.Precificacao.Web.csproj", "{91FE83C2-30E8-405F-92D2-44481BDDDDCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RM.Precificacao.App", "RM.Precificacao.App\RM.Precificacao.App.csproj", "{A65B8295-829F-4815-B371-E0AFF8150B15}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://vm13:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Dominio.Tests\\RM.Precificacao.Dominio.Tests.csproj
+		SccProjectName1 = Dominio.Tests
+		SccLocalPath1 = Dominio.Tests
+		SccProjectUniqueName2 = Dominio\\RM.Precificacao.Dominio.csproj
+		SccProjectName2 = Dominio
+		SccLocalPath2 = Dominio
+		SccProjectUniqueName3 = Infra\\RM.Precificacao.Infra.csproj
+		SccProjectName3 = Infra
+		SccLocalPath3 = Infra
+		SccProjectUniqueName4 = Web\\RM.Precificacao.Web.csproj
+		SccProjectName4 = Web
+		SccLocalPath4 = Web
+		SccProjectUniqueName5 = RM.Precificacao.App\\RM.Precificacao.App.csproj
+		SccProjectName5 = RM.Precificacao.App
+		SccLocalPath5 = RM.Precificacao.App
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = TestabilityEF4.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}.Release|x86.ActiveCfg = Release|Any CPU
+		{D329CAA7-F23C-447E-955E-3CE7A089B1CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D329CAA7-F23C-447E-955E-3CE7A089B1CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D329CAA7-F23C-447E-955E-3CE7A089B1CB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D329CAA7-F23C-447E-955E-3CE7A089B1CB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D329CAA7-F23C-447E-955E-3CE7A089B1CB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D329CAA7-F23C-447E-955E-3CE7A089B1CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D329CAA7-F23C-447E-955E-3CE7A089B1CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D329CAA7-F23C-447E-955E-3CE7A089B1CB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D329CAA7-F23C-447E-955E-3CE7A089B1CB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D329CAA7-F23C-447E-955E-3CE7A089B1CB}.Release|x86.ActiveCfg = Release|Any CPU
+		{3A863BED-2EE2-4AA4-B129-E4180E5EB3B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A863BED-2EE2-4AA4-B129-E4180E5EB3B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A863BED-2EE2-4AA4-B129-E4180E5EB3B4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3A863BED-2EE2-4AA4-B129-E4180E5EB3B4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3A863BED-2EE2-4AA4-B129-E4180E5EB3B4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3A863BED-2EE2-4AA4-B129-E4180E5EB3B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A863BED-2EE2-4AA4-B129-E4180E5EB3B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A863BED-2EE2-4AA4-B129-E4180E5EB3B4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3A863BED-2EE2-4AA4-B129-E4180E5EB3B4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3A863BED-2EE2-4AA4-B129-E4180E5EB3B4}.Release|x86.ActiveCfg = Release|Any CPU
+		{91FE83C2-30E8-405F-92D2-44481BDDDDCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91FE83C2-30E8-405F-92D2-44481BDDDDCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91FE83C2-30E8-405F-92D2-44481BDDDDCC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{91FE83C2-30E8-405F-92D2-44481BDDDDCC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{91FE83C2-30E8-405F-92D2-44481BDDDDCC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{91FE83C2-30E8-405F-92D2-44481BDDDDCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91FE83C2-30E8-405F-92D2-44481BDDDDCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91FE83C2-30E8-405F-92D2-44481BDDDDCC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{91FE83C2-30E8-405F-92D2-44481BDDDDCC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{91FE83C2-30E8-405F-92D2-44481BDDDDCC}.Release|x86.ActiveCfg = Release|Any CPU
+		{A65B8295-829F-4815-B371-E0AFF8150B15}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A65B8295-829F-4815-B371-E0AFF8150B15}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A65B8295-829F-4815-B371-E0AFF8150B15}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{A65B8295-829F-4815-B371-E0AFF8150B15}.Debug|x86.ActiveCfg = Debug|x86
+		{A65B8295-829F-4815-B371-E0AFF8150B15}.Debug|x86.Build.0 = Debug|x86
+		{A65B8295-829F-4815-B371-E0AFF8150B15}.Release|Any CPU.ActiveCfg = Release|x86
+		{A65B8295-829F-4815-B371-E0AFF8150B15}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A65B8295-829F-4815-B371-E0AFF8150B15}.Release|Mixed Platforms.Build.0 = Release|x86
+		{A65B8295-829F-4815-B371-E0AFF8150B15}.Release|x86.ActiveCfg = Release|x86
+		{A65B8295-829F-4815-B371-E0AFF8150B15}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

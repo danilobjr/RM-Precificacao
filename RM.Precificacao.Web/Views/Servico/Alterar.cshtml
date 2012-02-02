@@ -1,0 +1,119 @@
+﻿@model RM.Precificacao.Web.ViewModel.ServicoAlterarViewModel
+
+@using RM.Precificacao.Dominio.Enumeradores;
+@using RM.Precificacao.Web.Extensions;
+
+@{
+    ViewBag.Title = "Alterar";
+}
+
+<h2>Alteração de Serviços</h2>
+
+<div class="fieldset">
+    @using (Html.BeginForm("Incluir", "Servico", FormMethod.Post))
+    {
+        <div class="campo">
+            <label for="id">Código</label>
+            <br />
+            <input type="text" name="Id" id="id" disabled="disabled" value="@Model.Id" />
+        </div>
+        
+        <br clear="all" />
+        
+        <div class="campo">
+            <label>Empresa</label>
+            <br />
+
+            @foreach (Empresa valor in Enum.GetValues(typeof(Empresa)))
+            {
+                <div class="campoRadio">
+                    @Html.RadioButton("Empresa", ((int)valor), ((Empresa)Model.Empresa == valor), 
+                        new { @id = valor.GetStringValue() })
+
+                    <label for="@valor.GetStringValue()">@valor.GetStringValue()</label>
+                </div>
+            }
+        </div>
+        
+        <div class="campo">
+            <label>Tipo</label>
+            <br />
+
+            @foreach (TipoServico valor in Enum.GetValues(typeof(TipoServico)))
+            {
+                <div class="campoRadio">
+                    @Html.RadioButton("Tipo", ((int)valor), ((TipoServico)Model.TipoServico == valor), 
+                        new { @id = valor.GetStringValue() })
+
+                    <label for="@valor">@valor.GetStringValue()</label>
+                </div>
+            }
+        </div>
+        
+        <br clear="all" />
+        
+        <div class="campo">
+            <label>Descrição</label>
+            <br />
+            <input type="text" name="Descricao" value="@Model.Descricao" />
+        </div>
+
+        <br clear="all" />
+                
+        <div class="campo">
+            <label>Segmento</label>
+            <br />
+            <select name="Segmento">
+
+                @foreach (var segmento in Model.TodosOsSegmentos)
+                {
+                    var selecionado = (Model.Segmento.Id == segmento.Id);
+                    
+                    <option value="@segmento.Id"
+                        @(selecionado ? "selected='selected'" : "")>
+                        @segmento.Descricao
+                    </option>
+                }
+            </select>
+        </div>
+        
+        <div class="campo">
+            <label for="referencia">Referência</label>
+            <br />
+            <select id="referencia" name="Referencia">
+
+                @foreach (ReferenciaServico valor in Enum.GetValues(typeof(ReferenciaServico)))
+                {
+                    <option value="@((int)valor)" 
+                        @(((ReferenciaServico)Model.ReferenciaServico == valor) ? "selected='selected'" : "")>
+                        @valor
+                    </option>
+                }
+
+            </select>
+        </div>
+        
+        <div class="campo">
+            <label>Serviço Relacionado</label>
+            <br />
+            <select name="ServicoRelacionado">
+                @foreach (var servicoRelacionado in Model.TodosOsServicosRelacionados)
+                {
+                    var selecionado = (Model.ServicoRelacionado.Id == servicoRelacionado.Id);
+                    
+                    <option value="@servicoRelacionado.Id"
+                        @(selecionado ? "selected='selected'" : "")>
+                        @servicoRelacionado.Descricao
+                    </option>
+                }
+            </select>
+        </div>
+        
+        <br clear="all" />
+        
+        <div class="botoes">
+            @Html.ActionLink("Cancelar", "Index")
+            <input type="submit" value="Salvar" />
+        </div>
+    }
+</div>

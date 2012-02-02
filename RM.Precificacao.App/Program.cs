@@ -6,33 +6,32 @@ using System.Data.Entity;
 using RM.Precificacao.Infra;
 using RM.Precificacao.Dominio.Entidades;
 using RM.Precificacao.Dominio.Enumeradores;
+using RM.Precificacao.Dominio;
 
 namespace RM.Precificacao.App
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             Database.SetInitializer(new DropCreateDatabaseAlways<RMPrecificacaoDbContext>());
 
-            var servicos = CriarServicos();
-            var segmentos = CriarSegmentos(servicos);
-
-            using (var contexto = new RMPrecificacaoDbContext())
-            {
-                servicos.ForEach(s => contexto.Servicos.Add(s));
-                segmentos.ForEach(s => contexto.Segmentos.Add(s));
-                contexto.SaveChanges();
-            }
-
-            //using (var contexto = new RMPrecificacaoDbContext())
-            //{                
-            //    InserirSegmentosEmServicos(contexto.Servicos, contexto.Segmentos);
-            //    contexto.SaveChanges();
-            //}
+            PopularContexto(new RMPrecificacaoDbContext());
         }
 
-        private static List<Servico> CriarServicos()
+        public static void PopularContexto(IDbContext contexto)
+        {
+            var segmentos = CriarSegmentos();
+            var servicos = CriarServicos(segmentos);
+
+            segmentos.ForEach(s => contexto.Segmentos.Add(s));
+            contexto.SaveChanges();
+
+            servicos.ForEach(s => contexto.Servicos.Add(s));
+            contexto.SaveChanges();
+        }
+
+        public static List<Servico> CriarServicos(IList<Segmento> segmentos)
         {
             var servicos = new List<Servico>();
 
@@ -42,7 +41,8 @@ namespace RM.Precificacao.App
                 Empresa = (int)Empresa.RmTelecom,
                 TipoServico = (int)TipoServico.Engenharia,
                 ReferenciaServico = (int)ReferenciaServico.Acionamento,
-                Pai = null
+                Pai = null,
+                Segmento = segmentos[0]
             };
 
             var servico = new Servico
@@ -51,7 +51,8 @@ namespace RM.Precificacao.App
                 Empresa = (int)Empresa.RmTelecom,
                 TipoServico = (int)TipoServico.OeM,
                 ReferenciaServico = (int)ReferenciaServico.Sector,
-                Pai = servicoPai
+                Pai = servicoPai,
+                Segmento = segmentos[0]
             };
 
             servicos.Add(servico);
@@ -62,7 +63,8 @@ namespace RM.Precificacao.App
                 Empresa = (int)Empresa.RmTelecom,
                 TipoServico = (int)TipoServico.Engenharia,
                 ReferenciaServico = (int)ReferenciaServico.HOP,
-                Pai = servicoPai
+                Pai = servicoPai,
+                Segmento = segmentos[1]
             };
 
             servicos.Add(servico);
@@ -73,7 +75,8 @@ namespace RM.Precificacao.App
                 Empresa = (int)Empresa.RmEnergia,
                 TipoServico = (int)TipoServico.OeM,
                 ReferenciaServico = (int)ReferenciaServico.Site,
-                Pai = servicoPai
+                Pai = servicoPai,
+                Segmento = segmentos[1]
             };
 
             servicos.Add(servico);
@@ -81,34 +84,23 @@ namespace RM.Precificacao.App
             return servicos;
         }
 
-        private static List<Segmento> CriarSegmentos(IList<Servico> servicos)
+        public static List<Segmento> CriarSegmentos()
         {
             var segmentos = new List<Segmento>();
 
             segmentos.Add(new Segmento 
             { 
                 Descricao = "VOZ", 
-                Servicos = new List<Servico> { servicos.ElementAt(2) }
+                //Servicos = new List<Servico> { servicos.ElementAt(2) }
             });
 
             segmentos.Add(new Segmento
             {
                 Descricao = "ADSL",
-                Servicos = servicos.Take(2).ToList()
+                //Servicos = servicos.Take(2).ToList()
             });
 
             return segmentos;
-        }
-
-        public static void InserirSegmentosEmServicos(IDbSet<Servico> servicos, IDbSet<Segmento> segmentos)
-        {
-            var listaServicos = servicos.ToList();
-            var listaSegmentos = segmentos.ToList();
-
-            listaServicos.ElementAt(0).Segmento = listaSegmentos.ElementAt(0);
-            listaServicos.ElementAt(1).Segmento = listaSegmentos.ElementAt(0);
-            listaServicos.ElementAt(2).Segmento = listaSegmentos.ElementAt(1);
-            listaServicos.ElementAt(3).Segmento = listaSegmentos.ElementAt(1);
         }
     }
 }

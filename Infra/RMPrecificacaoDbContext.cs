@@ -15,7 +15,7 @@ namespace RM.Precificacao.Infra
         public RMPrecificacaoDbContext()
             : base("RM_PRECIFICACAO")
         {
-            //Database.SetInitializer<RMPrecificacaoDbContext>(new DominioInitializer());
+            
         }
 
         public IDbSet<Servico> Servicos { get; set; }

@@ -17,8 +17,6 @@ namespace RM.Precificacao.Infra.Mapeamentos
 
             Property(s => s.Id).HasColumnName("isnSegmento").IsRequired();
             Property(s => s.Descricao).HasColumnName("dscSegmento").HasMaxLength(50).IsRequired();
-
-            //HasMany<Servico>(seg => seg.Servicos).WithRequired().Map(m => m.MapKey(""));
         }
     }
 }

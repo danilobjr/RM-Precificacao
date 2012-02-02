@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="DominioInitializer.cs" />
     <Compile Include="Fakes\FakeDbSet.cs" />
+    <Compile Include="Fakes\RMPrecificacaoFakeContext.cs" />
     <Compile Include="Mapeamentos\SegmentoConfiguration.cs" />
     <Compile Include="Mapeamentos\ServicoConfiguration.cs" />
     <Compile Include="Repositorio\MapaOfertaServicosRepositorio.cs" />

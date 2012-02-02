@@ -1,6 +1,4 @@
-﻿@model RM.Precificacao.Web.ViewModel.ServicoIndexViewModel
-
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
@@ -77,26 +75,9 @@
                 <th></th>
             </tr>
         </thead>
-        
+
         <tbody>
-
-            @foreach (var servico in Model.Servicos)
-            {
-                <tr>
-                    <td>@servico.Empresa</td>
-                    <td>@servico.TipoServico</td>
-                    <td>@servico.Segmento.Descricao</td>
-                    <td>@servico.Descricao</td>
-                    <td>@servico.ReferenciaServico</td>
-                    <td>
-                        <a>Editar</a> | <a>Excluir</a>
-                        @*@Html.ActionLink("Editar", "Alterar", new { @id = servico.Id }, new { @class = "alterar" }) |
-                        @Html.ActionLink("Excluir", "Excluir", new { @id = servico.Id }, new { @class = "excluir" })*@
-                    </td>
-                </tr>
-            }
-
-            @*<tr>
+            <tr>
                 <td>RM TELECON</td>
                 <td>O&M</td>
                 <td>VOZ</td>
@@ -139,7 +120,7 @@
                     <a>Editar</a>
                     <a>Excluir</a>
                 </td>
-            </tr>*@
+            </tr>
         </tbody>
     </table>
 

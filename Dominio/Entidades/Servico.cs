@@ -15,7 +15,8 @@ namespace RM.Precificacao.Dominio.Entidades
         public int ReferenciaServico { get; set; }
         public int TipoServico { get; set; }
 
-        public Servico Pai { get; set; }
-        public Segmento Segmento { get; set; }
+        public virtual Servico Pai { get; set; }
+        public virtual Segmento Segmento { get; set; }
+        public virtual IList<Servico> Filhos { get; set; }
     }
 }

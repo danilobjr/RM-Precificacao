@@ -7,7 +7,7 @@ using RM.Precificacao.Dominio.Enumeradores;
 
 namespace RM.Precificacao.Web.ViewModel
 {
-    public class ServicoEditarViewModel
+    public class ServicoAlterarViewModel
     {
         public int Id { get; set; }
 

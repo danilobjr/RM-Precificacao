@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace RM.Precificacao.Dominio.Entidades
 {
@@ -10,6 +11,6 @@ namespace RM.Precificacao.Dominio.Entidades
         public int Id { get; set; }
         public string Descricao { get; set; }
 
-        public ICollection<Servico> Servicos { get; set; }
+        public virtual IList<Servico> Servicos { get; set; }
     }
 }

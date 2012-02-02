@@ -21,8 +21,8 @@ namespace RM.Precificacao.Infra.Mapeamentos
             Property(u => u.ReferenciaServico).HasColumnName("codReferencia").IsRequired();
             Property(u => u.TipoServico).HasColumnName("codTipoServico");
 
-            //HasRequired<Servico>(serv => serv.Pai).WithMany(serv => serv.Pai).Map(m => m.MapKey(""));
-            HasOptional<Segmento>(serv => serv.Segmento).WithMany(seg => seg.Servicos).Map(m => m.MapKey("codSegmento"));
+            HasOptional<Servico>(serv => serv.Pai).WithMany(serv => serv.Filhos).Map(m => m.MapKey("codServicoPai"));
+            HasRequired<Segmento>(serv => serv.Segmento).WithMany(seg => seg.Servicos).Map(m => m.MapKey("codSegmento"));
         }
     }
 }

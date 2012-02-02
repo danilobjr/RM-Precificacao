@@ -49,7 +49,7 @@ namespace RM.Precificacao.Web.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Index(ServicoIndexViewModel viewModel)
         {
             Servico servico = Conversor.ParaServico(viewModel);

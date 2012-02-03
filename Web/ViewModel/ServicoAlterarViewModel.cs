@@ -7,8 +7,10 @@ using RM.Precificacao.Dominio.Enumeradores;
 
 namespace RM.Precificacao.Web.ViewModel
 {
-    public class ServicoIncluirViewModel
+    public class ServicoAlterarViewModel
     {
+        public int Id { get; set; }
+
         public string Descricao { get; set; }
         public int Empresa { get; set; }
         public int ReferenciaServico { get; set; }
@@ -18,7 +20,7 @@ namespace RM.Precificacao.Web.ViewModel
         public Servico ServicoRelacionado { get; set; }
 
         public IList<Segmento> TodosOsSegmentos { get; set; }
-        public IList<ReferenciaServico> TodasAsReferencias { get; set; }
+        public IEnumerable<ReferenciaServico> TodasAsReferencias { get; set; }
         public IList<Servico> TodosOsServicosRelacionados { get; set; }
     }
 }

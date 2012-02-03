@@ -88,9 +88,9 @@ namespace RM.Precificacao.App
         {
             var segmentos = new List<Segmento>();
 
-            segmentos.Add(new Segmento 
-            { 
-                Descricao = "VOZ", 
+            segmentos.Add(new Segmento
+            {
+                Descricao = "VOZ",
                 //Servicos = new List<Servico> { servicos.ElementAt(2) }
             });
 

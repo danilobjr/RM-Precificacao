@@ -15,7 +15,7 @@ namespace RM.Precificacao.Infra
         public RMPrecificacaoDbContext()
             : base("RM_PRECIFICACAO")
         {
-            
+
         }
 
         public IDbSet<Servico> Servicos { get; set; }

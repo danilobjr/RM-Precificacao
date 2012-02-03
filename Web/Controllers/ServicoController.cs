@@ -9,8 +9,10 @@ using RM.Precificacao.Dominio.Entidades;
 using RM.Precificacao.Dominio.Servicos;
 using RM.Precificacao.Dominio.Enumeradores;
 using RM.Precificacao.Dominio.Excecoes;
+using RM.Precificacao.Web.Extensions;
 using RM.Precificacao.Web.ViewModel;
 using RM.Precificacao.Web.ViewModel.Utils;
+using RM.Precificacao.Web.ViewModel.Json;
 
 namespace RM.Precificacao.Web.Controllers
 {
@@ -49,15 +51,19 @@ namespace RM.Precificacao.Web.Controllers
             return View(viewModel);
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Index(ServicoIndexViewModel viewModel)
         {
-            Servico servico = Conversor.ParaServico(viewModel);
-            //Servico.Consultar(servico);
+            // Cria uma consulta dinâmica de acordo com os filtros
+            IQueryable<Servico> consulta = Contexto.Servicos.AsQueryable<Servico>();
 
-            // TODO
+            if (viewModel.IdSegmento > 0)
+                consulta = consulta.Where(s => s.Segmento.Id == viewModel.IdSegmento);
 
-            return View();
+            // Repopula o viewModel e reenvia para a View
+            viewModel.Servicos = consulta.ToList();
+
+            return View(viewModel);
         }
 
         public ActionResult Incluir()
@@ -65,7 +71,7 @@ namespace RM.Precificacao.Web.Controllers
             var viewModel = new ServicoIncluirViewModel
             {
                 TodosOsSegmentos = Contexto.Segmentos.ToList(),
-                TodasAsReferencias = Enum.GetValues(typeof(ReferenciaServico)).Cast<ReferenciaServico>(),
+                TodasAsReferencias = Enum.GetValues(typeof(ReferenciaServico)).Cast<ReferenciaServico>().ToList(),
                 TodosOsServicosRelacionados = Contexto.Servicos.ToList()
             };
 
@@ -102,7 +108,7 @@ namespace RM.Precificacao.Web.Controllers
 
             Servico servicoEmAlteracao = Contexto.Servicos.SingleOrDefault(s => s.Id == id.Value);
 
-            var viewModel = new ServicoEditarViewModel
+            var viewModel = new ServicoAlterarViewModel
             {
                 Id = servicoEmAlteracao.Id,
                 Descricao = servicoEmAlteracao.Descricao,
@@ -120,7 +126,7 @@ namespace RM.Precificacao.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Alterar(ServicoEditarViewModel viewModel)
+        public ActionResult Alterar(ServicoAlterarViewModel viewModel)
         {
             try
             {
@@ -138,6 +144,18 @@ namespace RM.Precificacao.Web.Controllers
                 e.CopiarPara(ModelState);
                 return View(viewModel);
             }
+        }
+
+        [HttpPost]
+        public JsonResult ObterTodosOsServicos()
+        {
+            var servicos = Conversor.ParaListaDeServicos(Contexto.Servicos.ToList());
+            
+            return Json(new JsonViewModel
+            {
+                Sucesso = true,
+                Dados = servicos
+            });
         }
     }
 }

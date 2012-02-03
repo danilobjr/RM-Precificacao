@@ -9,6 +9,7 @@ namespace RM.Precificacao.Web.ViewModel
     public class ServicoIndexViewModel
     {
         public IList<Servico> Servicos { get; set; }
+        public int IdSegmento { get; set; }
 
         public ServicoIndexViewModel()
         {

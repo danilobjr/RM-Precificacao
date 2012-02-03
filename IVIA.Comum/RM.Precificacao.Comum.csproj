@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{17AC74BF-7084-432A-B6D3-B9E0E26D46ED}</ProjectGuid>
+    <ProjectGuid>{F30D730E-6440-4B2B-8812-A521445123DF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dominio</RootNamespace>
-    <AssemblyName>Dominio</AssemblyName>
+    <RootNamespace>RedeInova.Comum</RootNamespace>
+    <AssemblyName>RedeInova.Comum</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -49,24 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\StringValueAttribute.cs" />
-    <Compile Include="Enumeradores\Empresa.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Enumeradores\ReferenciaServico.cs" />
-    <Compile Include="Entidades\Segmento.cs" />
-    <Compile Include="Entidades\Servico.cs" />
-    <Compile Include="Enumeradores\TipoServico.cs" />
-    <Compile Include="Excecoes\RegrasDeNegocioException.cs" />
-    <Compile Include="Servicos\GerenteUsuarios.cs" />
-    <Compile Include="IDbContext.cs" />
+    <Compile Include="Factories\IFabrica.cs" />
+    <Compile Include="Fakes\FakeDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servicos\MapaOfertaServicos.cs" />
+    <Compile Include="Exceptions\RegrasDeNegocioException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

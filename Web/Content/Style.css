@@ -1,0 +1,74 @@
+﻿.filtros
+{
+    margin-bottom: 15px;
+}
+
+    .filtros h2
+    {
+        padding: 10px;
+        font-size: 16px;
+        border-bottom: 2px solid #DDD;
+        border-radius: 3px;
+        background-color: #EEE;
+    }
+    
+    .filtros h2:hover
+    {
+        cursor: pointer;
+    }
+
+    .filtros .content
+    {
+        padding: 10px;
+    }
+
+    .filtros .content form > div.filtro
+    {
+        height: 24px;
+        margin-bottom: 12px;
+    }
+    
+    .filtros .content form > div.filtro > span    
+    {
+        margin-top: 3px;
+        width: 84px;
+        font-size: 14px;
+    }
+
+    .filtros .content form div.filtro > label
+    {
+        display: inline-block;
+        width: 84px;
+        font-size: 14px;
+    }
+
+    .filtros .content form > div > span, .filtros .content form > div > div.campo
+    {
+        float: left;
+    }
+    
+
+/* Mapa de Oferta de Serviços */
+    
+#conteudo_filtros_mapa_oferta_servicos
+{
+    height: 104px;
+}
+    
+/* POPUP Consulta Mapa de Oferta de Serviços */
+    
+#consultaMapaOfertaServico
+{
+    overflow: hidden;
+}
+
+    #consultaMapaOfertaServico .filtros h2
+    {
+        cursor: default;
+    }
+
+    #tabelaConsultaMapaOfertaServicos tbody tr:hover
+    {
+        cursor: pointer;
+        background-color: #FFA;
+    }

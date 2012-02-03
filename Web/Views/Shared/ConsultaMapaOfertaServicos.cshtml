@@ -1,59 +1,70 @@
-﻿<div>
+﻿@using RM.Precificacao.Dominio.Enumeradores;
+@using RM.Precificacao.Web.Extensions;
 
-    <h2>Mapa de Ofertas de Serviços</h2>
+<div id="consultaMapaOfertaServico" class="popup">
+
+    <div class="filtros fieldset">
+
+        <h2>Filtros</h2>
+        
+        <div class="content">
+
+            @using (Html.BeginForm())
+            {
+                <div class="campo">
+                    <label>Empresa</label>
+                    <br />
+
+                    @foreach (Empresa valor in Enum.GetValues(typeof(Empresa)))
+                    {
+                        <div class="campoRadio">
+                            <input type="radio" id="consulta_ + @valor.GetStringValue()" name="Empresa" value="@((int)valor)" />
+                            <label for="consulta_ + @valor.GetStringValue()">@valor.GetStringValue()</label>
+                        </div>
+                    }
+                </div>
+
+                <br clear="all" />
+                
+                <div class="campo">
+                    <label>Tipo</label>
+                    <br />
+
+                    @foreach (TipoServico valor in Enum.GetValues(typeof(TipoServico)))
+                    {
+                        <div class="campoRadio">
+                            <input type="radio" id="consulta_ + @valor" name="Tipo" value="@((int)valor)" />
+                            <label for="consulta_ + @valor">@valor.GetStringValue()</label>
+                        </div>
+                    }
+                </div>
+
+                <br clear="all" />
+                
+                <div class="campo">
+                    <label>Segmento</label>
+                    <br />
+                    <select>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label>Serviço</label>
+                    <br />
+                    <select>
+                    </select>
+                </div>
+
+                <div class="botoes">
+                    <button>Consultar</button>
+                </div>
+            }
+
+        </div>
+    </div>
 
     <section>
-        <header>
-            <h1>Filtros</h1>
-        </header>
-
-        <div>
-            <span>Empresa</span>
-
-            <div class="campo">
-                <input type="radio" name="empresa" value="1" />
-                <label>RM TELECON</label>
-            </div>
-
-            <div class="campo">
-                <input type="radio" name="empresa" value="2" />
-                <label>RM ENERGIA</label>
-            </div>
-        </div>
-
-        <div>
-            <span>Tipo</span>
-
-            <div class="campo">
-                <input type="radio" name="tipo" value="1" />
-                <label>Engenharia</label>
-            </div>
-
-            <div class="campo">
-                <input type="radio" name="tipo" value="2" />
-                <label>O&M</label>
-            </div>
-        </div>
-
-        <div>
-            <label>Segmento</label>
-            <select>
-            </select>
-        </div>
-
-        <div>
-            <label>Serviço</label>
-            <select>
-            </select>
-        </div>
-
-        <div>
-            <button>Consultar</button>
-        </div>
-    </section>
-
-    <section>
-        <table id="tabelaConsultaServicos">
+        <table id="tabelaConsultaMapaOfertaServicos">
             <thead>
                 <tr>
                     <th>Empresa</th>
@@ -65,34 +76,6 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>RM TELECON</td>
-                    <td>O&M</td>
-                    <td>VOZ</td>
-                    <td>Instalação TUP</td>
-                    <td>Acionamento</td>
-                </tr>
-                <tr>
-                    <td>RM TELECON</td>
-                    <td>O&M</td>
-                    <td>VOZ</td>
-                    <td>Mudança de Enderaço</td>
-                    <td>Acionamento</td>
-                </tr>
-                <tr>
-                    <td>RM TELECON</td>
-                    <td>O&M</td>
-                    <td>ADSL</td>
-                    <td>Instalação de Acesso VDSL</td>
-                    <td>Acionamento</td>
-                </tr>
-                <tr>
-                    <td>RM TELECON</td>
-                    <td>O&M</td>
-                    <td>VOZ</td>
-                    <td>ALTCTEC de Acesso ADSL</td>
-                    <td>Acionamento</td>
-                </tr>
             </tbody>
         </table>
     </section>

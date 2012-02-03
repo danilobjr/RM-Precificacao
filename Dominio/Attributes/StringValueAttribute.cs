@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Dominio.Attributes
+namespace RM.Precificacao.Dominio.Attributes
 {
     public class StringValueAttribute : Attribute
     {

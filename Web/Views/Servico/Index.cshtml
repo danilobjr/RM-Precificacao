@@ -1,69 +1,80 @@
-﻿@{
+﻿@model RM.Precificacao.Web.ViewModel.ServicoIndexViewModel
+
+@using RM.Precificacao.Dominio.Enumeradores;
+@using RM.Precificacao.Web.Extensions;
+
+@{
     ViewBag.Title = "Index";
 }
 
-@section scriptsOnHead {
+@section headRegion {
+
     <script src="@Url.Content("~/Scripts/App/Views/ServicoIndex/ViewModel/ServicoIndexViewModel.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/App/Views/ServicoIndex/Script/ServicoIndexScript.js")" type="text/javascript"></script>
 }
 
 <h2>Mapa de Ofertas de Serviços</h2>
 
-<section>
-    <header>
-        <h1>Filtros</h1>
-    </header>
+<div class="filtros fieldset">
 
-    @using (Html.BeginForm())
-    { 
-        <div>
-            <span>Empresa</span>
+    <h2>Filtros</h2>
 
+    <div id="conteudo_filtros_mapa_oferta_servicos" class="content">
+
+        @using (Html.BeginForm())
+        { 
             <div class="campo">
-                <input type="radio" name="empresa" value="1" />
-                <label>RM TELECON</label>
+                <label>Empresa</label>
+                <br />
+
+                @foreach (Empresa valor in Enum.GetValues(typeof(Empresa)))
+                {
+                    <div class="campoRadio">
+                        <input type="radio" name="Empresa" value="@((int)valor)" />
+                        <label>@valor.GetStringValue()</label>
+                    </div>
+                }
             </div>
 
             <div class="campo">
-                <input type="radio" name="empresa" value="2" />
-                <label>RM ENERGIA</label>
-            </div>
-        </div>
+                <label>Tipo</label>
+                <br />
 
-        <div>
-            <span>Tipo</span>
+                @foreach (TipoServico valor in Enum.GetValues(typeof(TipoServico)))
+                {
+                    <div class="campoRadio">
+                        <input type="radio" name="TipoServico" value="@((int)valor)" />
+                        <label>@valor.GetStringValue()</label>
+                    </div>
+                }
+            </div>
+
+            <br clear="all" />
+            
+            <div class="campo">
+                <label>Segmento</label>
+                <br />
+                <select>
+                </select>
+            </div>
 
             <div class="campo">
-                <input type="radio" name="empresa" value="1" />
-                <label>Engenharia</label>
+                <label>Serviço</label>
+                <br />
+                <select>
+                </select>
             </div>
 
-            <div class="campo">
-                <input type="radio" name="empresa" value="2" />
-                <label>O&M</label>
+            <div class="botoes">
+                <button>Filtrar</button>
             </div>
-        </div>
+        }
 
-        <div>
-            <label>Segmento</label>
-            <select>
-            </select>
-        </div>
+    </div>
 
-        <div>
-            <label>Serviço</label>
-            <select>
-            </select>
-        </div>
+</div>
 
-        <div>
-            <button>Consultar</button>
-        </div>
-    }
-
-</section>
-
-<section>
+<div>
     <table id="tabelaServicos">
         <thead>
             <tr>
@@ -75,16 +86,32 @@
                 <th></th>
             </tr>
         </thead>
-
+        
         <tbody>
-            <tr>
+
+            @foreach (var servico in Model.Servicos)
+            {
+                <tr>
+                    <td>@(((Empresa)servico.Empresa).GetStringValue())</td>
+                    <td>@(((TipoServico)servico.TipoServico).GetStringValue())</td>
+                    <td>@servico.Segmento.Descricao</td>
+                    <td>@servico.Descricao</td>
+                    <td>@((ReferenciaServico)servico.ReferenciaServico)</td>
+                    <td>
+                        @Html.ActionLink("Editar", "Alterar", new { @id = servico.Id }, new { @class = "alterar" }) |
+                        @Html.ActionLink("Excluir", "Excluir", new { @id = servico.Id }, new { @class = "excluir" })
+                    </td>
+                </tr>
+            }
+
+            @*<tr>
                 <td>RM TELECON</td>
                 <td>O&M</td>
                 <td>VOZ</td>
                 <td>Instalação TUP</td>
                 <td>Acionamento</td>
                 <td>
-                    <a>Editar</a>
+                    <a href="/Servico/Alterar/1">Editar</a>
                     <a>Excluir</a>
                 </td>
             </tr>
@@ -95,7 +122,7 @@
                 <td>Mudança de Enderaço</td>
                 <td>Acionamento</td>
                 <td>
-                    <a>Editar</a>
+                    <a href="/Servico/Alterar/2">Editar</a>
                     <a>Excluir</a>
                 </td>
             </tr>
@@ -106,7 +133,7 @@
                 <td>Instalação de Acesso VDSL</td>
                 <td>Acionamento</td>
                 <td>
-                    <a>Editar</a>
+                    <a href="/Servico/Alterar/3">Editar</a>
                     <a>Excluir</a>
                 </td>
             </tr>
@@ -117,14 +144,14 @@
                 <td>ALTCTEC de Acesso ADSL</td>
                 <td>Acionamento</td>
                 <td>
-                    <a>Editar</a>
+                    <a href="/Servico/Alterar/4">Editar</a>
                     <a>Excluir</a>
                 </td>
-            </tr>
+            </tr>*@
         </tbody>
     </table>
 
-    <div>
-        <button>Incluir</button>
+    <div class="botoes">
+        @Html.ActionLink("Incluir", "Incluir")
     </div>
-</section>
+</div>

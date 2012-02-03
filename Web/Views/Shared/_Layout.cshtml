@@ -1,11 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
 
     <title>@ViewBag.Title</title>
 
-    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Reset.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/_Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Style.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Scripts/Plugins/DataTables/css/demo_table_jui.css")" rel="stylesheet" type="text/css" />
 
@@ -15,22 +18,87 @@
 
     <script src="@Url.Content("~/Scripts/Plugins/DataTables/jquery.dataTables.min.js")" type="text/javascript"></script>
 
-    <script src="@Url.Content("~/Scripts/App/Main/Namespace.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/App/Namespaces/Namespaces.js")" type="text/javascript"></script>
 
     <script src="@Url.Content("~/Scripts/App/Componentes/Tabela.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/App/Componentes/Botao.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/App/Componentes/Dialog.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/App/Main/Elementos/TabelaConsultaMapaDeOfertaDeServicos.js")"
+        type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/App/Main/Elementos/PopupConsultaMapaDeOfertaDeServicos.js")"
+        type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/App/Servidor/Servidor.js")" type="text/javascript"></script>
 
     <script src="@Url.Content("~/Scripts/App/Main/ViewModel/MainViewModel.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/App/Main/Script/MainScript.js")" type="text/javascript"></script>
 
-    @RenderSection("scriptsOnHead", false)
-
+    @RenderSection("headRegion", false)
 </head>
+
 <body>
-    <div class="page">
-        <header>
+    <div id="page">
+        
+        <div id="painel-esquerdo">
+            <div id="logo">
+                <img src="@Url.Content("~/Content/images/logo_sistema_menu.gif")" alt="RM - Soluções em Infraestrutura" />
+            </div>
+
+            <div id="areaRestrita" class="section">
+                <div class="header">Área Restrita</div>
+
+                <div class="content">
+                    <div class="info">
+                        <label>Matrícula:</label>
+                        <br />
+                        <span>001234</span>
+                    </div>
+
+                    <div class="info">
+                        <label>Usuário:</label>
+                        <br />
+                        <span>Fulano de Tal</span>
+                    </div>
+
+                    <div class="info">
+                        <label>Setor:</label>
+                        <br />
+                        <span>TI E COMUNICAÇÃO</span>
+                    </div>
+
+                    <div class="loginActions">
+                        <a href="#">Trocar Senha</a>
+                        <a href="#" class="sair">Sair</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="menu" class="section">
+                <div class="header">Menu</div>
+
+                @*<div class="content">*@
+                    <ul>
+                        <li>@Html.ActionLink("Mapa de Ofertas", "Index", "Servico")</li>
+                        <li>@Html.ActionLink("Mapa de Ofertas", "Index", "Servico")</li>
+                        <li>@Html.ActionLink("Mapa de Ofertas", "Index", "Servico")</li>
+                        <li>@Html.ActionLink("Mapa de Ofertas", "Index", "Servico")</li>
+                        <li>@Html.ActionLink("Mapa de Ofertas", "Index", "Servico")</li>
+                        <li><a href="#" class="abrirConsultaDeServicos">Consulta Mapa de Oferta de Serviços</a></li>
+                    </ul>
+                @*</div>*@
+            </div>
+        </div>
+
+        <div id="main">
+            @RenderBody()
+        </div>
+
+        @*<div id="footer"></div>*@
+
+        @*<header>
             <div id="title">
-                <h1>Arquitetura .NET 2012</h1>                    
+                <img src="@Url.Content("~/Content/images/logo_sistema_menu.gif")" alt="RM - Soluções em Infraestrutura" />
             </div>
             <div id="logindisplay">
                 @Html.Partial("_LogOnPartial")
@@ -60,7 +128,10 @@
         </section>
 
         <footer>
-        </footer>
+        </footer>*@
     </div>
+
+    @Html.Partial("ConsultaMapaOfertaServicos")
+
 </body>
 </html>

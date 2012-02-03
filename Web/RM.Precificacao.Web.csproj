@@ -84,18 +84,25 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\RegrasDeNegocioExceptionExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\ServicoEditarViewModel.cs" />
+    <Compile Include="ViewModel\Json\JsonViewModel.cs" />
+    <Compile Include="ViewModel\ServicoAlterarViewModel.cs" />
     <Compile Include="ViewModel\ServicoIncluirViewModel.cs" />
     <Compile Include="ViewModel\ServicoIndexViewModel.cs" />
+    <Compile Include="ViewModel\ServicoObterTodosOsServicosViewModel.cs" />
     <Compile Include="ViewModel\Utils\Conversor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\logo_sistema_menu.gif" />
+    <Content Include="Content\Style.css" />
+    <Content Include="Content\Reset.css" />
+    <Content Include="Content\_Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -125,10 +132,14 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\App\Componentes\Botao.js" />
+    <Content Include="Scripts\App\Componentes\Dialog.js" />
     <Content Include="Scripts\App\Componentes\Tabela.js" />
+    <Content Include="Scripts\App\Main\Elementos\PopupConsultaMapaDeOfertaDeServicos.js" />
+    <Content Include="Scripts\App\Main\Elementos\TabelaConsultaMapaDeOfertaDeServicos.js" />
     <Content Include="Scripts\App\Main\Script\MainScript.js" />
-    <Content Include="Scripts\App\Main\Namespace.js" />
+    <Content Include="Scripts\App\Namespaces\Namespaces.js" />
     <Content Include="Scripts\App\Main\ViewModel\MainViewModel.js" />
+    <Content Include="Scripts\App\Servidor\Servidor.js" />
     <Content Include="Scripts\App\Views\ServicoIndex\Script\ServicoIndexScript.js" />
     <Content Include="Scripts\App\Views\ServicoIndex\ViewModel\ServicoIndexViewModel.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
@@ -178,7 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\App\Main\Elementos\" />
     <Folder Include="Scripts\App\Views\ServicoIndex\Elementos\" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +231,12 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Servico\Alterar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Servico\Incluir.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

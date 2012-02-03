@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Dominio.Attributes;
+using RM.Precificacao.Dominio.Attributes;
 
 namespace RM.Precificacao.Dominio.Enumeradores
 {

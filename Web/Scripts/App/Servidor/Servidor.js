@@ -40,7 +40,7 @@ RM.Precificacao.Servidor.ajax = function (options) {
             }
         },
         success: function (resultado) {
-            if (typeof (options.successCallback) === 'function') {
+            if (typeof (options.successCallback) === 'function' && resultado) {
                 options.successCallback(resultado, options.context);
             }
             else {

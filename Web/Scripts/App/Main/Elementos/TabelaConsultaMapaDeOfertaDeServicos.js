@@ -23,6 +23,29 @@ RM.Precificacao.Elemento.TabelaConsultaMapaDeOfertaDeServicos = function (idTabe
 RM.Precificacao.Elemento.TabelaConsultaMapaDeOfertaDeServicos.prototype = 
     new RM.Precificacao.Componente.Tabela();
 
+RM.Precificacao.Elemento.TabelaConsultaMapaDeOfertaDeServicos.prototype.adicionarLinhas = function (servicos) {
+
+    /// <summary>
+    /// Monta o array de linhas a partir de uma lista de servicos.
+    /// </summary>
+    /// <param name="servicos" type="array">Lista de servicos.</param>
+
+    var linhas = [];
+
+    $.each(servicos, function (i, servico) {
+        linhas.push([
+            servico.Empresa + '<input type="hidden" value="' + servico.IdServico + '"/>',
+            servico.TipoServico,
+            servico.DescricaoSegmento,
+            servico.DescricaoServico,
+            servico.ReferenciaServico
+        ]);
+    });
+
+    this.tabela.fnAddData(linhas);
+
+};
+
 RM.Precificacao.Elemento.TabelaConsultaMapaDeOfertaDeServicos.prototype.carregarRegistros = function () {
 
     /// <summary>
@@ -33,27 +56,28 @@ RM.Precificacao.Elemento.TabelaConsultaMapaDeOfertaDeServicos.prototype.carregar
 
     RM.Precificacao.Servidor.ajax({
         url: '/Servico/ObterTodosOsServicos',
-        successCallback: function (resultado, context) {
+        successCallback: function (resultado, contextTabela) {
             if (resultado.Dados) {
-                var linhas = [];
+//                var linhas = [];
 
-                $.each(resultado.Dados, function (i, servico) {
-                    var _servico = $(servico);
-                    linhas.push([
-                        servico.Empresa,
-                        servico.TipoServico,
-                        servico.DescricaoSegmento,
-                        servico.DescricaoServico,
-                        servico.ReferenciaServico
-                    ]);
-                });
+//                $.each(resultado.Dados, function (i, servico) {
+//                    var _servico = $(servico);
+//                    linhas.push([
+//                        servico.Empresa,
+//                        servico.TipoServico,
+//                        servico.DescricaoSegmento,
+//                        servico.DescricaoServico,
+//                        servico.ReferenciaServico
+//                    ]);
+//                });
 
-                context.tabela.adicionarLinhas(linhas);
+                var servicos = resultado.Dados;
+
+                contextTabela.limparTabela();
+                contextTabela.adicionarLinhas(servicos);
             }
         },
-        context: {
-            tabela: that
-        }
+        context: that
     });
 };
 

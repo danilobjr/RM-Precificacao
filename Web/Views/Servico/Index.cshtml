@@ -1,5 +1,6 @@
 ﻿@model RM.Precificacao.Web.ViewModel.ServicoIndexViewModel
 
+@using RM.Precificacao.Dominio.Entidades;
 @using RM.Precificacao.Dominio.Enumeradores;
 @using RM.Precificacao.Web.Extensions;
 
@@ -29,9 +30,11 @@
 
                 @foreach (Empresa valor in Enum.GetValues(typeof(Empresa)))
                 {
+                    var isChecked = (Model.Empresa == valor);
+                    
                     <div class="campoRadio">
-                        <input type="radio" name="Empresa" value="@((int)valor)" />
-                        <label>@valor.GetStringValue()</label>
+                        <input type="radio" name="Empresa" id="@valor.GetStringValue()" value="@((int)valor)" @(isChecked ? "checked='checked'" : "") />
+                        <label for="@valor.GetStringValue()">@valor.GetStringValue()</label>
                     </div>
                 }
             </div>
@@ -42,9 +45,11 @@
 
                 @foreach (TipoServico valor in Enum.GetValues(typeof(TipoServico)))
                 {
+                    var isChecked = (Model.TipoServico == valor);
+                    
                     <div class="campoRadio">
-                        <input type="radio" name="TipoServico" value="@((int)valor)" />
-                        <label>@valor.GetStringValue()</label>
+                        <input type="radio" name="TipoServico" id="@valor.GetStringValue()" value="@((int)valor)" @(isChecked ? "checked='checked'" : "") />
+                        <label for="@valor.GetStringValue()">@valor.GetStringValue()</label>
                     </div>
                 }
             </div>
@@ -54,15 +59,25 @@
             <div class="campo">
                 <label>Segmento</label>
                 <br />
-                <select>
+                <select name="IdSegmento">
+
+                    <option>Selecione</option>
+
+                    @foreach (Segmento segmento in Model.Segmentos)
+                    {
+                        <option value="@segmento.Id"
+                            @(Model.IdSegmento == segmento.Id ? "selected='selected'" : "")>
+                            @segmento.Descricao
+                        </option>
+                    }
+
                 </select>
             </div>
 
             <div class="campo">
                 <label>Serviço</label>
                 <br />
-                <select>
-                </select>
+                <input type="text" name="DescricaoServico" value="@Model.DescricaoServico" />
             </div>
 
             <div class="botoes">

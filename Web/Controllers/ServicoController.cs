@@ -13,6 +13,7 @@ using RM.Precificacao.Web.Extensions;
 using RM.Precificacao.Web.ViewModel;
 using RM.Precificacao.Web.ViewModel.Utils;
 using RM.Precificacao.Web.ViewModel.Json;
+using Web.ViewModel;
 
 namespace RM.Precificacao.Web.Controllers
 {
@@ -43,10 +44,17 @@ namespace RM.Precificacao.Web.Controllers
 
         public ActionResult Index()
         {
-            var viewModel = new ServicoIndexViewModel
+            var viewModel = new ServicoIndexViewModel();
+
+            try
             {
-                Servicos = Contexto.Servicos.ToList()
-            };
+                viewModel.Servicos = Contexto.Servicos.ToList();
+                viewModel.Segmentos = Contexto.Segmentos.ToList();
+            }
+            catch (Exception)
+            {
+                viewModel.Mensagem = "Erro de conexão com a base de dados. Operação cancelada.";
+            }
 
             return View(viewModel);
         }
@@ -54,14 +62,17 @@ namespace RM.Precificacao.Web.Controllers
         [HttpPost]
         public ActionResult Index(ServicoIndexViewModel viewModel)
         {
-            // Cria uma consulta dinâmica de acordo com os filtros
-            IQueryable<Servico> consulta = Contexto.Servicos.AsQueryable<Servico>();
+            try
+            {
+                viewModel.Servicos = Servico.ConsultarServico(viewModel.DescricaoServico, viewModel.IdSegmento,
+                                                              viewModel.Empresa, viewModel.TipoServico);
 
-            if (viewModel.IdSegmento > 0)
-                consulta = consulta.Where(s => s.Segmento.Id == viewModel.IdSegmento);
-
-            // Repopula o viewModel e reenvia para a View
-            viewModel.Servicos = consulta.ToList();
+                viewModel.Segmentos = Contexto.Segmentos.ToList();
+            }
+            catch (Exception)
+            {
+                viewModel.Mensagem = "Erro de conexão com a base de dados. Operação cancelada.";
+            }
 
             return View(viewModel);
         }
@@ -83,19 +94,26 @@ namespace RM.Precificacao.Web.Controllers
         {
             try
             {
-                Servico novoServico = Conversor.ParaServico(viewModel);
-                Servico.ValidarInclusao(novoServico);
+                if (ModelState.IsValid)
+                {
+                    Servico novoServico = Conversor.ParaServico(viewModel);
+                    Servico.ValidarInclusao(novoServico);
 
-                Contexto.Servicos.Add(novoServico);
-                Contexto.SaveChanges();
+                    Contexto.Servicos.Add(novoServico);
+                    Contexto.SaveChanges();
 
-                return View();
+                    return View();
+                }
             }
             catch (RegrasDeNegocioException e)
             {
                 e.CopiarPara(ModelState);
-                return View(viewModel);
             }
+
+            viewModel.TodosOsSegmentos = Contexto.Segmentos.ToList();
+            viewModel.TodosOsServicosRelacionados = Contexto.Servicos.ToList();
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -147,6 +165,21 @@ namespace RM.Precificacao.Web.Controllers
         }
 
         [HttpPost]
+        public JsonResult ConsultarServicosPopup(ServicoConsultarServicosPopupViewModel viewModel)
+        {
+            var consulta = Servico.ConsultarServico(viewModel.DescricaoServico, viewModel.IdSegmento,
+                                                    viewModel.Empresa, viewModel.TipoServico);
+
+            viewModel.Servicos = Conversor.ParaListaDeServicosGrid(consulta);
+
+            return Json(new JsonViewModel
+            {
+                Sucesso = true,
+                Dados = viewModel
+            });
+        }
+
+        [HttpPost]
         public JsonResult ObterTodosOsServicos()
         {
             var servicos = Conversor.ParaListaDeServicos(Contexto.Servicos.ToList());
@@ -155,6 +188,18 @@ namespace RM.Precificacao.Web.Controllers
             {
                 Sucesso = true,
                 Dados = servicos
+            });
+        }
+
+        [HttpPost]
+        public JsonResult ObterTodosOsSegmentos()
+        {
+            var segmentos = Conversor.ParaListaDeSegmentos(Contexto.Segmentos.ToList());
+
+            return Json(new JsonViewModel
+            {
+                Sucesso = true,
+                Dados = segmentos
             });
         }
     }

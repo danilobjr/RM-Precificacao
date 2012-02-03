@@ -35,7 +35,7 @@ namespace RM.Precificacao.Web.ViewModel.Utils
             {
                 servicosViewModel.Add(new ServicoObterTodosOsServicosViewModel 
                 { 
-                    Id = servico.Id,
+                    IdServico = servico.Id,
                     DescricaoServico = servico.Descricao,
                     DescricaoSegmento = servico.Segmento.Descricao,
                     Empresa = ((Empresa)servico.Empresa).GetStringValue(),
@@ -45,6 +45,42 @@ namespace RM.Precificacao.Web.ViewModel.Utils
             }
 
             return servicosViewModel;
+        }
+
+        internal static IList<ServicoObterTodosOsSegmentosViewModel> ParaListaDeSegmentos(List<Segmento> segmentos)
+        {
+            var segmentosViewModel = new List<ServicoObterTodosOsSegmentosViewModel>();
+
+            foreach (var segmento in segmentos)
+            {
+                segmentosViewModel.Add(new ServicoObterTodosOsSegmentosViewModel
+                {
+                    IdSegmento = segmento.Id,
+                    DescricaoSegmento = segmento.Descricao
+                });
+            }
+
+            return segmentosViewModel;
+        }
+
+        internal static IList<ServicoGrid> ParaListaDeServicosGrid(IList<Servico> servicos)
+        {
+            var listaServicoGrid = new List<ServicoGrid>();
+
+            foreach (var servico in servicos)
+            {
+                listaServicoGrid.Add(new ServicoGrid
+                {
+                    IdServico = servico.Id,
+                    Empresa = ((Empresa)servico.Empresa).GetStringValue(),
+                    TipoServico = ((TipoServico)servico.TipoServico).GetStringValue(),
+                    DescricaoSegmento = servico.Segmento.Descricao,
+                    DescricaoServico = servico.Descricao,
+                    ReferenciaServico = ((ReferenciaServico)servico.ReferenciaServico).ToString()
+                });
+            }
+
+            return listaServicoGrid;
         }
     }
 }

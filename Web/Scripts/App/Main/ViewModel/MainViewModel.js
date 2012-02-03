@@ -10,9 +10,11 @@ RM.Precificacao.ViewModel.MainViewModel = function () {
 
     this.tabelaConsultaMapaOfertaServicos = new RM.Precificacao.Elemento.TabelaConsultaMapaDeOfertaDeServicos('tabelaConsultaMapaOfertaServicos');
 
+    this.formConsultaMapaOfertaServicos = new RM.Precificacao.Elemento.FormConsultaMapaDeOfertaDeServicos();
+
     this.popupConsultaMapaOfertaServicos =
-        new RM.Precificacao.Elemento.PopupConsultaMapaDeOfertaDeServicos('consultaMapaOfertaServico', 
-                                              'Mapa de Oferta de Serviços',
-                                              800, 510, null, this.tabelaConsultaMapaOfertaServicos);
+        new RM.Precificacao.Elemento.PopupConsultaMapaDeOfertaDeServicos('consultaMapaOfertaServico',
+                                              'Mapa de Oferta de Serviços', 800, 310, null, 
+                                              this.tabelaConsultaMapaOfertaServicos, this.formConsultaMapaOfertaServicos);
 
 };

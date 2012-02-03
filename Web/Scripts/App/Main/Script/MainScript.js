@@ -6,6 +6,7 @@ RM.Precificacao.Script.MainScript = function () {
 
     var that = this;
     var viewModel = new RM.Precificacao.ViewModel.MainViewModel();
+    var formConsultaMapaOfertaServicos = viewModel.formConsultaMapaOfertaServicos;
     var tabelaConsultaMapaOfertaServicos = viewModel.tabelaConsultaMapaOfertaServicos;
     var popupConsultaMapaOfertaServicos = viewModel.popupConsultaMapaOfertaServicos;
 
@@ -15,15 +16,26 @@ RM.Precificacao.Script.MainScript = function () {
     that.abrirConsultaDeServicos = function (e) {
         e.preventDefault();
 
+        tabelaConsultaMapaOfertaServicos.limparTabela();
         popupConsultaMapaOfertaServicos.abrir();
     };
 
     that.selecionarOfertaDeServico = function (e) {
         // TODO
 
-        tabelaConsultaMapaOfertaServicos.limparTabela();
         popupConsultaMapaOfertaServicos.fechar();
     };
+
+    that.filtrarDadosPopupConsultaMapaOfertaServicos = function (e) {
+        e.preventDefault();
+
+        var callback = function (resultado) {
+            tabelaConsultaMapaOfertaServicos.limparTabela();
+            tabelaConsultaMapaOfertaServicos.adicionarLinhas(resultado.Dados.Servicos);
+        };
+
+        formConsultaMapaOfertaServicos.filtrar(callback);
+    }
 };
 
 (function ($) {
@@ -36,6 +48,7 @@ RM.Precificacao.Script.MainScript = function () {
 
         $('.abrirConsultaDeServicos').click(mainScript.abrirConsultaDeServicos);
         $('#tabelaConsultaMapaOfertaServicos tr').live('click', mainScript.selecionarOfertaDeServico);
+        $('#consultaMapaOfertaServico form button').click(mainScript.filtrarDadosPopupConsultaMapaOfertaServicos);
     });
 
 })(jQuery);

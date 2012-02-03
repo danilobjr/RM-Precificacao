@@ -26,6 +26,7 @@ RM.Precificacao.Componente.Dialog = function (idContainer, titulo, largura, altu
     // Construtor
 
     that.popup = $(_idContainer).dialog({
+        modal: true,
         title: titulo || 'Popup',
         minWidth: largura || 400,
         minHeight: altura || 300,

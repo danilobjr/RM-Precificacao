@@ -17,9 +17,11 @@
 
                     @foreach (Empresa valor in Enum.GetValues(typeof(Empresa)))
                     {
+                        var elementId = String.Format("consulta_{0}", @valor.GetStringValue()).Replace(" ", "_");
+                        
                         <div class="campoRadio">
-                            <input type="radio" id="consulta_ + @valor.GetStringValue()" name="Empresa" value="@((int)valor)" />
-                            <label for="consulta_ + @valor.GetStringValue()">@valor.GetStringValue()</label>
+                            <input type="radio" id="@elementId" name="Empresa" value="@((int)valor)" />
+                            <label for="@elementId">@valor.GetStringValue()</label>
                         </div>
                     }
                 </div>
@@ -32,9 +34,11 @@
 
                     @foreach (TipoServico valor in Enum.GetValues(typeof(TipoServico)))
                     {
+                        var elementId = String.Format("consulta_{0}", @valor.GetStringValue()).Replace(" ", "_");
+                        
                         <div class="campoRadio">
-                            <input type="radio" id="consulta_ + @valor" name="Tipo" value="@((int)valor)" />
-                            <label for="consulta_ + @valor">@valor.GetStringValue()</label>
+                            <input type="radio" id="@elementId" name="TipoServico" value="@((int)valor)" />
+                            <label for="@elementId">@valor.GetStringValue()</label>
                         </div>
                     }
                 </div>
@@ -44,19 +48,18 @@
                 <div class="campo">
                     <label>Segmento</label>
                     <br />
-                    <select>
+                    <select name="IdSegmento">
                     </select>
                 </div>
 
                 <div class="campo">
                     <label>Serviço</label>
                     <br />
-                    <select>
-                    </select>
+                    <input type="text" name="DescricaoServico" />
                 </div>
 
                 <div class="botoes">
-                    <button>Consultar</button>
+                    <button>Filtrar</button>
                 </div>
             }
 

@@ -10,13 +10,20 @@
 
 <h2>Cadastro de Serviços</h2>
 
+@if (!ViewContext.ViewData.ModelState.IsValid)
+{ 
+    <div class="erro">
+        @Html.ValidationSummary()
+    </div>
+}
+
 <div class="fieldset">
     @using (Html.BeginForm("Incluir", "Servico", FormMethod.Post))
     {
         <div class="campo">
-            <label for="id">Código</label>
+            <label for="idServico">Código</label><span class="red">*</span>
             <br />
-            <input type="text" name="Id" id="id" />
+            <input type="text" name="IdServico" id="id" />
         </div>
         
         <br clear="all" />
@@ -50,7 +57,7 @@
         <br clear="all" />
         
         <div class="campo">
-            <label>Descrição</label>
+            <label>Descrição</label><span class="red">*</span>
             <br />
             <input type="text" name="Descricao" />
         </div>
@@ -62,6 +69,8 @@
             <br />
             <select name="Segmento">
                 
+                <option>Selecione</option>
+
                 @foreach (Segmento segmento in Model.TodosOsSegmentos)
                 {
                     <option value="@segmento.Id">@segmento.Descricao</option>
@@ -71,9 +80,11 @@
         </div>
         
         <div class="campo">
-            <label for="referencia">Referência</label>
+            <label for="referencia">Referência</label><span class="red">*</span>
             <br />
-            <select id="referencia" name="Referencia">
+            <select id="referencia" name="ReferenciaServico">
+
+                <option>Selecione</option>
 
                 @foreach (ReferenciaServico valor in Enum.GetValues(typeof(ReferenciaServico)))
                 {

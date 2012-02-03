@@ -8,7 +8,7 @@ namespace Web.ViewModel
 {
     public class ServicoObterTodosOsServicosViewModel
     {
-        public int Id { get; set; }
+        public int IdServico { get; set; }
         public string DescricaoServico { get; set; }
         public string Empresa { get; set; }
         public string TipoServico { get; set; }

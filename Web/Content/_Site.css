@@ -194,6 +194,31 @@ table a:hover
     {
         margin: 6px 3px 0 0;
     }
+    
+.red
+{
+    margin-left: 4px;
+    color: red;
+}
+
+/* MENSAGEM Info / Erro / Socesso */
+
+.erro
+{
+    margin: 12px;
+    padding: 20px;
+    color: white;
+    font-size: 14px;
+    text-shadow: 1px 1px 1px #FAA;
+    border: 1px solid gainsboro;
+    border-radius: 4px;
+    background: -webkit-linear-gradient(top, #FF3019 0%,#CF0404 100%);    
+}
+
+.erro li
+{
+    margin-bottom: 3px;
+}
 
 /* POPUPs */
 

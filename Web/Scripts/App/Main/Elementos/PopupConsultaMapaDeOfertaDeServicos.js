@@ -1,6 +1,8 @@
 ﻿/// <reference path="../Main/Namespace.js" />
 
-RM.Precificacao.Elemento.PopupConsultaMapaDeOfertaDeServicos = function (idContainer, titulo, largura, altura, botoes, tabelaConsultaMaparOfertaServico) {
+RM.Precificacao.Elemento.PopupConsultaMapaDeOfertaDeServicos =
+function (idContainer, titulo, largura, altura, botoes,
+          tabelaConsultaMaparOfertaServico, formConsultaMaparOfertaServico) {
 
     /// <summary>
     /// Renderiza uma popup na tela com o container especificado.
@@ -17,11 +19,15 @@ RM.Precificacao.Elemento.PopupConsultaMapaDeOfertaDeServicos = function (idConta
     /// <param name="tabelaConsultaMaparOfertaServico" type="TabelaConsultaMapaDeOfertaDeServicos">
     /// Tabela Consulta Mapa de Oferta de Servicos.
     /// </param>
+    /// <param name="formConsultaMaparOfertaServico" type="FormConsultaMapaDeOfertaDeServicos">
+    /// Form de filtros na popup Consulta Mapa de Oferta de Servicos.
+    /// </param>
 
 
     // Propriedades
 
     this._tabelaConsultaMapaDeOfertaDeServico = tabelaConsultaMaparOfertaServico;
+    this._formConsultaMapaDeOfertaDeServico = formConsultaMaparOfertaServico;
 
 
     // Construtor da class pai
@@ -38,8 +44,9 @@ RM.Precificacao.Elemento.PopupConsultaMapaDeOfertaDeServicos.prototype.abrir = f
     /// Abre a popup na tela.
     /// </summary>
 
-    this.popup.dialog('open');
+    this._formConsultaMapaDeOfertaDeServico.carregarDropdownListSegmento();
     this._tabelaConsultaMapaDeOfertaDeServico.carregarRegistros();
+    this.popup.dialog('open');
 };
 
 // USAGE =================================================================================//

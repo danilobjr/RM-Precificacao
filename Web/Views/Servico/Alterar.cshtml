@@ -65,6 +65,8 @@
             <br />
             <select name="Segmento">
 
+                <option>Selecione</option>
+
                 @foreach (var segmento in Model.TodosOsSegmentos)
                 {
                     var selecionado = (Model.Segmento.Id == segmento.Id);
@@ -81,6 +83,8 @@
             <label for="referencia">Referência</label>
             <br />
             <select id="referencia" name="Referencia">
+
+                <option>Selecione</option>
 
                 @foreach (ReferenciaServico valor in Enum.GetValues(typeof(ReferenciaServico)))
                 {
